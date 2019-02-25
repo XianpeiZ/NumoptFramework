@@ -1,0 +1,8 @@
+{
+    "program_name": "logq",
+    "function_name" : "irram_logq",
+    "variables" : {"e": "decimal", "r": "decimal"},
+    "input_variables":["e"],
+    "return": "r",
+	"paths" : [{"constrain":"-1<e&&e<1", "path":[{"type": "procedure", "content": [["r", "log((1-e)/(1+e))"]]}]}]
+}

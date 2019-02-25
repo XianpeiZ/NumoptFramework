@@ -1,0 +1,8 @@
+{
+    "program_name": "3frac",
+    "function_name" : "irram_3frac",
+    "variables" : {"x": "decimal", "r": "decimal"},
+    "input_variables":["x"],
+    "return": "r",
+	"paths" : [{"constrain":"-1e100<x&&x<1e100", "path":[{"type": "procedure", "content": [["r", "1/(x+1)-2/x+1/(x-1)"]]}]}]
+}

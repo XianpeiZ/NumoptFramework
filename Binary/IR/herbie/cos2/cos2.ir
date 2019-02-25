@@ -1,0 +1,8 @@
+{
+    "program_name": "cos2",
+    "function_name" : "irram_cos2",
+    "variables" : {"x": "decimal", "r": "decimal"},
+    "input_variables":["x"],
+    "return": "r",
+	"paths" : [{"constrain":"0<x&&x<1e100", "path":[{"type": "procedure", "content": [["r", "(1-cos(x))/(x*x)"]]}]}]
+}

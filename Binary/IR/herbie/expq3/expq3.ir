@@ -1,0 +1,8 @@
+{
+    "program_name": "expq3",
+    "function_name" : "irram_expq3",
+    "variables" : {"a": "decimal", "b": "decimal", "e": "decimal", "r": "decimal"},
+    "input_variables":["a", "b", "e"],
+    "return": "r",
+	"paths" : [{"constrain":"-1e-100<e&&e<1e-100&&(-100<a+b)&&(a+b<100)", "path":[{"type": "procedure", "content": [["r", "e*(exp((a+b)*e)-1)/((exp(a*e)-1)*(exp(b*e)-1))"]]}]}]
+}

@@ -1,0 +1,9 @@
+{
+    "program_name": "expq2",
+    "function_name" : "irram_expq2",
+    "variables" : {"x": "decimal", "r": "decimal"},
+    "input_variables":["x"],
+    "domain": {"x":{"start": "-inf", "end": "1.0"}},
+    "return": "r",
+	"paths" : [{"constrain":"-100<x&&x<100", "path":[{"type": "procedure", "content": [["r", "exp(x)/(exp(x)-1)"]]}]}]
+}

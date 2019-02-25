@@ -1,0 +1,8 @@
+{
+    "program_name": "2atan",
+    "function_name" : "irram_2atan",
+    "variables" : {"n": "decimal", "r": "decimal"},
+    "input_variables":["n"],
+    "return": "r",
+	"paths" : [{"constrain":"true", "path":[{"type": "procedure", "content": [["r", "atan(n+1)-atan(n)"]]}]}]
+}

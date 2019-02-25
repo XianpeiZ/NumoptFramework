@@ -1,0 +1,8 @@
+{
+    "program_name": "qlog",
+    "function_name" : "irram_qlog",
+    "variables" : {"x": "decimal", "r": "decimal"},
+    "input_variables":["x"],
+    "return": "r",
+	"paths" : [{"constrain":"-1<x&&x<1", "path":[{"type": "procedure", "content": [["r", "log(1-x)/log(1+x)"]]}]}]
+}

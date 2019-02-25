@@ -1,0 +1,8 @@
+{
+    "program_name": "2cbrt",
+    "function_name" : "irram_2cbrt",
+    "variables" : {"x": "decimal", "r": "decimal"},
+    "input_variables":["x"],
+    "return": "r",
+	"paths" : [{"constrain":"x>0", "path":[{"type": "procedure", "content": [["r", "(x+1)**(1.0/3)-x**(1.0/3)"]]}]}]
+}

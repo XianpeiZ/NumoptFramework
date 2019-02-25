@@ -1,0 +1,8 @@
+{
+    "program_name": "2sqrt",
+    "function_name" : "irram_2sqrt",
+    "variables" : {"x": "decimal", "r": "decimal"},
+    "input_variables":["x"],
+    "return": "r",
+	"paths" : [{"constrain":"0<x", "path":[{"type": "procedure", "content": [["r", "sqrt(x+1)-sqrt(x)"]]}]}]
+}

@@ -1,0 +1,8 @@
+{
+    "program_name": "logs",
+    "function_name" : "irram_logs",
+    "variables" : {"n": "decimal", "r": "decimal"},
+    "input_variables":["n"],
+    "return": "r",
+	"paths" : [{"constrain":"0<n", "path":[{"type": "procedure", "content": [["r", "n*log(1+1/n)+log(n+1)-1"]]}]}]
+}

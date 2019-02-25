@@ -1,0 +1,8 @@
+{
+    "program_name": "expax",
+    "function_name" : "irram_expax",
+    "variables" : {"a": "decimal", "x": "decimal", "r": "decimal"},
+    "input_variables":["a", "x"],
+    "return": "r",
+	"paths" : [{"constrain":"(0<a)&&(a<1e-10)&&(0<x)&&(x<1e-10)", "path":[{"type": "procedure", "content": [["r", "exp(a*x)-1"]]}]}]
+}

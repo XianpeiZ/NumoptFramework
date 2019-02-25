@@ -1,0 +1,8 @@
+{
+    "program_name": "2frac",
+    "function_name" : "irram_2frac",
+    "variables" : {"x": "decimal", "r": "decimal"},
+    "input_variables":["x"],
+    "return": "r",
+	"paths" : [{"constrain":"true", "path":[{"type": "procedure", "content": [["r", "1/(x+1)-1/x"]]}]}]
+}

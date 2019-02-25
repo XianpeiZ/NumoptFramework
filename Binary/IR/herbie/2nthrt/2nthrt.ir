@@ -1,0 +1,8 @@
+{
+    "program_name": "2nthrt",
+    "function_name" : "irram_2nthrt",
+    "variables" : {"x": "decimal", "n": "decimal", "r": "decimal"},
+    "input_variables":["x", "n"],
+    "return": "r",
+	"paths" : [{"constrain":"0<x&&n>1", "path":[{"type": "procedure", "content": [["r", "(x+1)**(1/n)-x**(1/n)"]]}]}]
+}

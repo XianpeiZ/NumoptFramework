@@ -1,0 +1,302 @@
+# Rules are defined in this File.
+# Every rule is defined as:
+# # [RuleName]: [InputPattern] ->  [OutputPattern] @ [CorrectnessPrecondition] @ [PrioritizedPrecondition] @ w[WinCount];
+
+Negative : -A -> (-1)*A @ @ @ w88;
+Negative2: (-1)*A -> -A @ @ @ w117;
+Negative3: (-A)*(-A) -> A*A @ @ @ w312;
+
+Minus1 : A-B -> A+(-B) @ @ @ w92;
+Minus2 : A+B -> A-(-B) @ @ @ w95;
+Minus3 : A-B -> ((A-B)*(A+B))/(A+B) @ @ @ w91;
+Minus4 : A+(-B) -> A-B @ @ @ w101;
+
+Divide : A/B -> A*(1/B) @ @ @ w88;
+Divide2 : A*(1/B) -> A/B @ @ @ w271;
+Divide3 : A/B -> 1/(B/A) @ @ @ w21;
+
+LogDivide : log(A/B) -> log(A) - log(B) @ @ @ w192;
+LogMinus : log(A)-log(B) -> log(A/B) @ @ @ w110;
+LogDivideReverse: log(A/B) -> -log(B/A) @ @ @ w181;
+LogSum : log(A) + log(B) -> log(A*B) @ @ @ w131;
+LogMulti : log(A*B) -> log(A) + log(B) @ @ @ w154;
+LogNeg : -log(A) -> log(1/A) @ @ @ w65;
+LogBtm : log(1/A) -> -log(A) @ @ @ w211;
+
+CommutationPlus : A+B -> B+(A) @ @ @ w161;
+CommutationMultiply : A*B -> B*A @ @ @ w145;
+
+AssociationPlus : A+B+C -> A+(B+C) @ @ @ w101;
+AssociationPlus2 : A+(B+C) -> (A+B)+C @ @ @ w73;
+AssociationPlus3 : A+(B-C) -> (A+B)-C @ @ @ w32;
+AssociationPlus4 : A-B+C -> A-(B-C) @ @ @ w11;
+AssociationPlus5 : A-(B+C) -> (A-B)-C @ @ @ w60;
+AssociationPlus6 : A+B-C -> A+(B-C) @ @ @ w7;
+AssociationPlus7 : A-(B-C) -> (A-B)+C @ @ @ w12;
+AssociationPlus8 : A-B-C -> A-(B+C) @ @ @ w71;
+AssociationMultiply : A*B*C -> A*(B*C) @ @ @ w100;
+AssociationMultiply2 : A*(B*C) -> A*B*C @ @ @ w136;
+AssociationMultiply3 : A*B/C -> A*(B/C) @ @ @ w31;
+AssociationMultiply4 : A*(B/C) -> A*B/C @ @ @ w26;
+AssociationMultiply5 : A/(B*C) -> A/B/C @ @ @ w39;
+AssociationMultiply6 : A/B/C -> A/(B*C) @ @ @ w9;
+AssociationMultiply7 : A/(B/C) -> A/B*C @ @ @ w26;
+AssociationMultiply8 : A/B*C -> A/(B/C) @ @ @ w23;
+AssociationMultiply9 : A*B/C -> A/(C/B) @ @ @ w10;
+AssociationMultiply10 : A/B*C -> A*C/B @ @ @ w14;
+AssociationMultiply11 : (A*B)/(C*D) -> (A/C)*(B/D) @ @ @ w11;
+
+Distribution1 : A*(B+C) -> A*B+A*C @ @ @ w99;
+Distribution2 : (A+B)*C -> A*C+B*C @ @ @ w97;
+Distribution3 : (A+B)/C -> (A)/(C)+(B)/(C) @ @ @ w72;
+Distribution4 : A*B+A*C -> A*(B+C) @ @ @ w118;
+Distribution5 : A*C+B*C -> (A+B)*C @ @ @ w325;
+Distribution6 : (A)/(C)+(B)/(C) -> (A+B)/C @ @ @ w618;
+Distribution7 :  A*B-A*C -> A*(B-C) @ @ @ w279;
+Distribution8 :  A*C-B*C -> (A-B)*C @ @ @ w232;
+Distribution9 :  A*(B-C) -> A*B-A*C @ @ @ w34;
+Distribution10 :  (A-B)*C -> A*C-B*C @ @ @ w18;
+Distribution11 :  (A-B)/C -> A/C-B/C @ @ @ w23;
+
+DistributionEx :  -(A*B) -> (-A)*B @ @ @ w211;
+DistributionEx2 : -(A*B) -> A*(-B) @ @ @ w107;
+DistributionEx3 : (-A)*B -> -(A*B) @ @ @ w45;
+DistributionEx4 : A*(-B) -> -(A*B) @ @ @ w78;
+DistributionEx5 : -(A+B) -> (-A)-B @ @ @ w114;
+DistributionEx6 : (-A)-B -> -(A+B) @ @ @ w66;
+DistributionEx7 : (-A)/B -> -(A/B) @ @ @ w82;
+DistributionEx8 : -(A/B) -> (-A)/B @ @ @ w94;
+DistributionEx9 :  A*B+A -> A*(B+1) @ @ @ w341;
+DistributionEx10 : A+A*B -> A*(1+B) @ @ @ w233;
+
+Identity1:  -(-A) -> A @ @ @ w7132709;
+Identity2:  -A -> 0 - A @ @ @ w12;
+Identity3: A + 0 -> A @ @ @ w791734;
+Identity4: 0 + A -> A @ @ @ w867192;
+Identity5: A - 0 -> A @ @ @ w533212;
+Identity6: 0 - A -> -A @ @ @ w146593;
+Identity7: A - A -> 0 @ @ @ w32656;
+Identity8: A * 0 -> 0 @ @ @ w971496;
+Identity9: 0 * A -> 0 @ @ @ w730457;
+Identity10: A * 1 -> A @ @ @ w398742;
+Identity11: A -> 1 * A @ @ @ w93;
+Identity12: 1 * A -> A @ @ @ w628730;
+Identity13: 0 / A -> 0 @ @ @ w62195;
+Identity14: A / 1 -> A @ @ @ w91845;
+Identity15: A / A -> 1 @ @ @ w47325;
+Identity16: 1/(1/A) -> A @ @ @ w5571620;
+Identity17: A+B-B -> A @ @ @ w3394103;
+Identity18: A+B-A -> B @ @ @ w64839;
+Identity19: A*B/A -> B @ @ @ w793324;
+Identity20: A*B/B -> A @ @ @ w753990;
+Identity21: exp(log(A)) -> A @ @ @ w13768;
+Identity22: log(exp(A)) -> A @ @ @ w12946;
+Identity23: sin(asin(A)) -> A @ @ @ w8945;
+Identity24: cos(acos(A)) -> A @ @ @ w7653;
+Identity25: tan(atan(A)) -> A @ @ @ w5275;
+
+SquareUnfold1: (A+B)*(A+B) -> A*A+2*A*B+B*B @ @ @ w103;
+SquareMinus:   A*A-B*B -> (A+B)*(A-B) @ @ @ w307;
+SquareMinus2:  (A+B)*(A-B) ->  A*A-B*B @ @ @ w1611;
+SquareMinusEx1: A+B -> (A*A-B*B)/(A-B) @ @ @ w43;
+SquareMinusEx2: A-B -> (A*A-B*B)/(A+B) @ @ @ w68;
+SquareMinusEx3:  A*A-1 -> (A+1)*(A-1) @ @ @ w72;
+SquareMinusEx4:  (A+1)*(A-1) -> A*A-1 @ @ @ w16103;
+SquareMinusEx5:  A*A+(-1) -> (A+1)*(A-1) @ @ @ w411;
+SquareMinusEx6:  (A+1)*(A-1) -> A*A+(-1) @ @ @ w3;
+SqrtEx1: sqrt(A)*sqrt(A) -> A @ @ @ w243874;
+SqrtEx2: sqrt(A)*sqrt(B) -> sqrt(A*B) @ @ @ w98;
+SqrtEx3: sqrt(A)/sqrt(B) -> sqrt(A/B) @ @ @ w78;
+SqrtEx4: sqrt(A*B) -> sqrt(A)*sqrt(B) @ @ @ w77;
+SqrtEx5: sqrt(A/B) -> sqrt(A)/sqrt(B) @ @ @ w63;
+SqrtEx6: A -> sqrt(A)*sqrt(A) @ @ @ w47;
+
+CbrtEx: cbrt(A*B) -> cbrt(A)*cbrt(B) @ @ @ w142;
+CbrtEx2: cbrt(A/B) -> cbrt(A)/cbrt(B) @ @ @ w136;
+CbrtEx3: cbrt(A)*cbrt(B) -> cbrt(A*B) @ @ @ w121;
+CbrtEx4: cbrt(A)/cbrt(B) -> cbrt(A/B) @ @ @ w111;
+CbrtEx5: x -> cbrt(A)*cbrt(A)*cbrt(A) @ @ @ w59;
+CbrtEx6: x -> cbrt(A**3) @ @ @ w258;
+
+CubeSum1: A*A*A+B*B*B -> (A+B)*(A*A-A*B+B*B) @ @ @ w77;
+CubeSum2: A+B -> (A*A*A+B*B*B)/(A*A-A*B+B*B) @ @ @ w12;
+CubeMinus1: A*A*A-B*B*B -> (A-B)*(A*A+A*B+B*B) @ @ @ w78;
+CubeMinus2: A-B -> (A*A*A-B*B*B)/(A*A+A*B+B*B) @ @ @ w10;
+
+CommDenominator : A/B+C/D -> (A*D+B*C)/(B*D) @ @ @ w104;
+CommDenominator1 : A/B+C -> (A+B*C)/B @ @ @ w95;
+CommDenominator2 : A/B-C -> (A-B*C)/B @ @ @ w110;
+
+FracReduction : (A*N)/(B*N) -> A/(B) @ @ @ w211;
+FracPartial : A/(A-B) -> 1+B/(A-B) @ @ @ w109;
+FracAdd : A/B + C/D -> (A*D+B*C)/(B*D) @ @ @ w51;
+FracMinus : A/B - C/D -> (A*D-B*C)/(B*D) @ @ @ w47;
+FracMulti : (A/B)*(C/D) -> (A*C)/(B*D) @ @ @ w38;
+FracNeg : (-A)/(-B) -> A/B @ @ @ w251;
+
+NumeratorForm : (A+B)/(C+D) -> (A+B)*(A-B)/((C+D)*(A-B)) @ @ @ w103;
+NumeratorFrom1 : (A+B)/C -> (A*A-B*B)/(C*(A-B)) @ @ @ w112;
+NumeratorFrom2 : (A-B)/C -> (A*A-B*B)/(C*(A+B)) @ @ @ w109;
+NumeratorFrom3 : A-B -> (A*A-B*B)/(A+B) @ @ @ w308;
+
+DenominatorForm : (A+B)/(C+D) -> (A+B)*(C-D)/((C+D)*(C-D)) @ @ @ w95;
+
+Tan : tan(x) -> sin(x)/cos(x) @ @ @ w121;
+
+Sec : sec(x) -> 1/cos(x) @ @ @ w104;
+
+Csc : csc(x) -> 1/sin(x) @ @ @ w98;
+
+Cot : cot(x) -> cos(x)/sin(x) @ @ @ w117;
+
+SinCosSqrSum : sin(A)*sin(A) + cos(A)*cos(A) -> 1 @ @ @ w34;
+OneMinusCos : 1 - cos(A)*cos(A) -> sin(A)*sin(A) @ @ @ w25;
+OneMinusSin : 1 - sin(A)*sin(A) -> cos(A)*cos(A) @ @ @ w21;
+SinNeg : sin(-A) -> -sin(A) @ @ @ w43;
+CosNeg : cos(-A) -> cos(A) @ @ @ w74;
+TanNeg : tan(-A) -> -tan(A) @ @ @ w32;
+SinDouble : sin(2*A) -> 2*sin(A)*cos(A) @ @ @ w13;
+CosDouble : cos(2*A) -> cos(A)*cos(A) - sin(A)*sin(A) @ @ @ w11;
+TanDouble : tan(2*A) -> 2*tan(A)/(1-tan(A)*tan(A)) @ @ @ w9;
+SinTriple : sin(3*A) -> 3*sin(A) - 4*sin(A)**3 @ @ @ w12;
+CosTriple : cos(3*A) -> 4*cos(A)**3 - 3*cos(A) @ @ @ w8;
+SinSqr : sin(A)*sin(A) -> 1/2 - cos(2*A)/2 @ @ @ w87;
+CosSqr : cos(A)*cos(A) -> 1/2 + cos(2*A)/2 @ @ @ w91;
+TanTrans : tan(A) -> sin(A)/cos(A) @ @ @ w64;
+TanTrans2 : sin(A)/cos(A) -> tan(A) @ @ @ w55;
+TanTrans3 : sin(A)/(1+cos(A)) -> tan(A/2) @ @ @ w78;
+TanTrans4 : -sin(A)/(1+cos(A)) -> tan(-A/2) @ @ @ w66;
+TanTrans5 : (1-cos(A))/sin(A) -> tan(A/2) @ @ @ w75;
+TanTrans6 : (1-cos(A))/(-sin(A)) -> tan(-A/2) @ @ @ w56;
+TanTrans7 : (sin(A)+sin(B))/(cos(A)+cos(B)) -> tan((A+B)/2) @ @ @ w104;
+TanTrans8 : (sin(A)-sin(B))/(cos(A)+cos(B)) -> tan((A-B)/2) @ @ @ w98;
+
+TrigoEx1: cos(asin(A)) -> sqrt(1-A*A) @ @ @ w78;
+TrigoEx2: tan(asin(A)) -> A/sqrt(1-A*A) @ @ @ w64;
+TrigoEx3: sin(acos(A)) -> sqrt(1-A*A) @ @ @ w53;
+TrigoEx4: tan(acos(A)) -> sqrt(1-A*A)/A @ @ @ w55;
+TrigoEx5: sin(atan(A)) -> A/sqrt(1+A*A) @ @ @ w65;
+TrigoEx6: cos(atan(A)) -> 1/sqrt(1+A*A) @ @ @ w43;
+TrigoEx7: asin(A) -> PI/2 - acos(A) @ @ @ w87;
+TrigoEx8: acos(A) -> PI/2 - asin(A) @ @ @ w77;
+TrigoEx9: asin(-A) -> -asin(A) @ @ @ w103;
+TrigoEx10: acos(-A) -> PI - acos(A) @ @ @ w94;
+TrigoEx11: atan(-A) -> -atan(A) @ @ @ w109;
+
+SinPI1: sin(PI/3) -> sqrt(3)/2 @ @ @ w2342;
+SinPI2: sin(PI/4) -> sqrt(2)/2 @ @ @ w3256;
+SinPI3: sin(PI/6) -> 1/2 @ @ @ w5342;
+CosPI1: cos(PI/3) -> 1/2 @ @ @ w4532;
+CosPI2: cos(PI/4) -> sqrt(2)/2 @ @ @ w3279;
+CosPI3: cos(PI/5) -> sqrt(3)/2 @ @ @ w2839;
+
+SinhNeg: sinh(-A) -> -sinh(A) @ @ @ w79;
+CoshNeg: cosh(-A) -> cosh(A) @ @ @ w84;
+SinhEx: sinh(A) -> (exp(A) - exp(-A))/2 @ @ @ w43;
+CoshEx: cosh(A) -> (exp(A) + exp(-A))/2 @ @ @ w41;
+TanhEx: tanh(A) -> (exp(2*A)-1)/(exp(2*A)+1) @ @ @ w36;
+TanhEx2: tanh(A) -> (exp(A)-exp(-A))/(exp(A)+exp(-A)) @ @ @ w32;
+TanhEx3: tanh(A) -> (1-exp(-2*A))/(1+exp(-2*A)) @ @ @ w29;
+CoshMinusSinh: cosh(A)*cosh(A) - sinh(A)*sinh(A) -> 1 @ @ @ w243;
+CoshPlusSinh: cosh(A) + sinh(A) -> exp(A) @ @ @ w89;
+CoshMinusSinh: cosh(A) - sinh(A) -> exp(-A) @ @ @ w78;
+CoshSum: cosh(A+B) -> cosh(A)*cosh(B) + sinh(A)*sinh(B) @ @ @ w32;
+CoshDiff: cosh(A-B) -> cosh(A)*cosh(B) - sinh(A)*sinh(B) @ @ @ w28;
+CoshDouble: cosh(2*A) -> sinh(A)*sinh(A) + cosh(A)*cosh(B) @ @ @ w35;
+CoshHalf: cosh(A/2) -> sqrt((cosh(A)+1)/2) @ @ @ w27;
+SinhSum: sinh(A+B) -> sinh(A)*cosh(B) + cosh(A)*sinh(B) @ @ @ w35;
+SinhDiff: sinh(A-B) -> sinh(A)*cosh(B) - cosh(A)*sinh(B) @ @ @ w39;
+SinhDouble: sinh(2*A) -> 2*sinh(A)*cosh(A) @ @ @ w37;
+SinhHalf: sinh(A/2) -> sinh(A)/sqrt(2*(cosh(A)+1)) @ @ @ w21;
+TanhSum: tanh(A+B) -> (tanh(A)+tanh(B))/(1+tanh(A)*tanh(B)) @ @ @ w17;
+TanhDouble: tanh(2*A) -> (2*tanh(A))/(1+tanh(A)*tanh(A)) @ @ @ w21;
+TanhHalf: tanh(A/2) -> sinh(A)/(1+cosh(A)) @ @ @ w34;
+TanhHalf2: tanh(A/2) -> (cosh(A)-1)/sinh(A) @ @ @ w21;
+SinhPlus: sinh(A) + sinh(B) -> 2*sinh((A+B)/2)*cosh((A-B)/2) @ @ @ w11;
+CoshPlus: cosh(A) + cosh(B) -> 2*cosh((A+B)/2)*cosh((A-B)/2) @ @ @ w9;
+SinhMinus: sinh(A) - sinh(B) -> 2*cosh((A+B)/2)*sinh((A-B)/2) @ @ @ w13;
+CoshMinus: cosh(A) - cosh(B) -> 2*sinh((A+B)/2)*sinh((A-B)/2) @ @ @ w7;
+
+SinPlus : sin(A+B) -> sin(A)*cos(B)+cos(A)*sin(B) @ @ @ w101;
+SinMinus : sin(A-B) -> sin(A)*cos(B)-cos(A)*sin(B) @ @ @ w94;
+CosPlus: cos(A+B) -> (cos(A)*cos(B)-sin(A)*sin(B)) @ @ @ w124;
+CosMinus : cos(A-B) -> cos(A)*cos(B)+sin(A)*sin(B) @ @ @ w89;
+TanPlus : tan(A+B) -> (tan(A)+tan(B))/(1-tan(A)*tan(B)) @ @ @ w106;
+TanMinus : tan(A-B) -> (tan(A)-tan(B))/(1+tan(A)*tan(B)) @ @ @ w99;
+
+SinCos : sin(A)*cos(B) -> (sin(A+B)+sin(A-B))/2 @ @ @ w114;
+CosSin : cos(A)*sin(B) -> (sin(A+B)-sin(A-B))/2 @ @ @ w107;
+CosCos : cos(A)*cos(B) -> (cos(A+B)+cos(A-B))/2 @ @ @ w97;
+SinSin : sin(A)*sin(B) -> (cos(A-B)-cos(A+B))/2 @ @ @ w113;
+
+SinCosR : sin(A)+sin(B) -> 2*sin((A+B)/2)*cos((A-B)/2) @ @ @ w114;
+CosSinR : sin(A)-sin(B) -> 2*cos((A+B)/2)*sin((A-B)/2) @ @ @ w94;
+CosCosR : cos(A)+cos(B) -> 2*cos((A+B)/2)*cos((A-B)/2) @ @ @ w117;
+SinSinR : cos(A)-cos(B) -> -2*sin((A+B)/2)*sin((A-B)/2) @ @ @ w89;
+AtanMinus: atan(A)-atan(B) -> atan((A-B)/(1+A*B)) @ @ @ w121;
+
+PowEx: A**(-1) -> 1/A @ @ @ w2751;
+PowEx2: A**1 -> A @ @ @ w3578;
+PowWx3: 1**A -> 1 @ @ @ w3985;
+PowEx4: A**B*A -> A**(B+1) @ @ @ w2134;
+PowEx5: A**(1/2) -> sqrt(A) @ @ @ w1543;
+PowEx6: A**2 -> A*A @ @ @ w1975;
+PowEx7: A**3 -> A*A*A @ @ @ w763;
+PowEx8: exp(A)**B -> exp(A*B) @ @ @ w231;
+PowEx9: A**B -> exp(log(A)*B) @ @ @ w171;
+PowEx10: A**B*A**C -> A**(B+C) @ @ @ w198;
+PowEx11: B**A*C**A -> (B*C)**A @ @ @ w121;
+PowEx12: (A**B)**C -> A**(B*C) @ @ @ w128;
+PowEx13: A**(-B) -> 1/(A**B) @ @ @ w217;
+PowEx14: 1/(A**B) -> A**(-B) @ @ @ w161;
+PowEx15: A**B/A**C -> A**(B-C) @ @ @ w197;
+PowEx16: A**(B-C) -> A**B/A**C @ @ @ w149;
+PowEx17: A**(B*C) -> (A**B)**C @ @ @ w154;
+PowEx18: A**(B+C) -> A**B*A**C @ @ @ w119;
+PowEx19: (B*C)**A -> B**A*C**A @ @ @ w125;
+PowEx20: sqrt(A) -> A**(1/2) @ @ @ w103;
+PowEx21: A*A -> A**2 @ @ @ w78;
+PowEx22: A*A*A -> A**3 @ @ @ w87;
+PowEx23: cbrt(A) -> A**(1/3) @ @ @ w75;
+PowEx24: (-A)**3 -> -A**3 @ @ @ w284;
+
+ExpReduction : (exp(2*A)-1)/(exp(A)-1) -> 1+exp(A) @ @ @ w1000;
+ExpSum : exp(A+B) -> exp(A)*exp(B) @ @ @ w89;
+ExpDiff : exp(A-B) -> exp(A)/exp(B) @ @ @ w75;
+ExpDiv : exp(A)/exp(B) -> exp(A-B) @ @ @ w105;
+ExpMulti : exp(A)*exp(B) -> exp(A+B) @ @ @ w129;
+ExpNeg : exp(-A) -> 1/exp(A) @ @ @ w96;
+ExpSqrt : exp(A/2) -> sqrt(exp(A)) @ @ @ w77;
+Exp2Pow: exp(log(A)*B) -> A**B @ @ @ w314;
+
+TaylorExp: exp(x) -> (1+x+x**2/2+x**3/6+x**4/24) @ @ @ w124;
+TaylorLog: log(1+x) -> (x-x**2/2+x**3/3-x**4/4) @ @ @ w108;
+
+TaylorLn: sum(k, 0, n, -x^k/k) -> ln(1-x) @ abs(x) < 1 @ @ w96;
+
+TaylorLnPlusReverse : log(x+1) -> (x - (x)^2/2 + (x)^3/3 - (x)^4/4+(x)^5/5) @ @ @ w103;
+TaylorLnMinusReverse : log(-x+1) -> (-x - x^2/2 - x^3/3 - x^4/4-x^5/5) @ @ @ w101;
+TaylorLnDivide : log((x+1)/(-x+1)) -> 2*x*(1+1/x^2+1/5*x^4) @ @ @ w98;
+
+TaylorSin: sin(x) -> (x-x**3/6+x**5/120-x**7/5040) @ @ @ w131;
+TaylorCos: cos(x) -> (1-x**2/2+x**4/24-x**6/720) @ @ @ w120;
+TaylorTan: tan(x) -> (x+x*3/3+x**5*2/15+x**7*17/315) @ @ @ w127;
+
+PolarConversionGeneral: R1+R2/sqrt((R1+R2)*(R1+R2)+(I1+I2)*(I1+I2)) -> cos(get_arc(R1,I1)+get_arc(sqrt(R1*R1+I1*I1)+sqrt(R2*R2+I2*I2)*cos(get_arc(R2,I2)-get_arc(R1,I1)),sqrt(R2*R2+I2*I2)*sin(get_arc(R2,I2)-get_arc(R1,I1)))) @ @ @ w1211;
+PolarComplexSameAbsolute1: R1+R2 -> sqrt((R1+R2)*(R1+R2)+(I1+I2)*(I1+I2))*cos((get_arc(R1,I1)+get_arc(R2,I2))/2) @ R1*R1+I1*I1 = R2*R2+I2*I2 && abs(get_arc(R1,I1)-get_arc(R2,I2))<pi @ abs(R1+R2)<0.1 @ w91279;
+PolarComplexSameAbsolute2: R1+R2 -> -sqrt((R1+R2)*(R1+R2)+(I1+I2)*(I1+I2))*cos((get_arc(R1,I1)+get_arc(R2,I2))/2) @ R1*R1+I1*I1 = R2*R2+I2*I2 && abs(get_arc(R1,I1)-get_arc(R2,I2))>=pi @ abs(R1+R2)<0.1 @ w42655;
+
+PolarRepresentation: A+B*I -> sqrt(A**2+B**2)*e**(atan(B/A)*I) @ @ @ w117;
+
+ComplexSum1: (a1+a2)/sqrt((a1+a2)*(a1+a2)+(b1+b2)*(b1+b2)) -> cos(get_arc((sqrt(a1*a1+b1*b1)+sqrt(a2*a2+b2*b2)*cos(get_arc(a2,b2)-get_arc(a1,b1))),sqrt(a2*a2+b2*b2)*sin(get_arc(a2,b2)-get_arc(a1,b1)))+get_arc(a1,b1)) @ @ @ w122;
+ComplexSum2: (a1+a2)/sqrt((a1+a2)*(a1+a2)+(b1+b2)*(b1+b2)) -> cos((get_arc(a1,b1)+get_arc(a2,b2))/2) @ @ @ w3153;
+
+StirlingGamma: (X-0.5)*ln(X)-X+ln(2*pi)/2+sum(k, 1, n, bnl(2*k)/(2*k*(2*k-1)*X^(2*k-1))) -> ln(gamma(X)) @ @ @ w919;
+
+GammaTrans: gamma(X) -> X*gamma(X-1) @ @ @ w78;
+
+Gamma_0: gamma(X) -> 1.0/X-euler_gamma @ abs(X) < eps @ @ w92;
+
+Gamma_1: gamma(X) -> X*(euler_gamma-1.0)/((2.0-euler_gamma)*(X+1.0)) @ abs(X+1) < eps @ @ w92;
+
+Gamma_2: gamma(X) -> (8.0-4.0*euler_gamma+3.0*X-2.0*euler_gamma*X)/(4.0*X+8.0) @ abs(X+2) < eps @ @ w113;

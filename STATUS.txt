@@ -1,0 +1,7 @@
+We apply for the badge "available". 
+
+Our artifact (NumOpt v1.12) is functional. We make the artifact publicly accessible at: 
+http://seg.nju.edu.cn/eytang/numopt/
+, and publish the URL in our paper.
+
+We also grant the source code with the GNU General Public License version 2 (GPL v2), which is an open source license.

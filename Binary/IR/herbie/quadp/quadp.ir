@@ -1,0 +1,8 @@
+{
+    "program_name": "quadp",
+    "function_name" : "irram_quadp",
+    "variables" : {"a": "decimal", "b": "decimal", "c": "decimal", "r": "decimal"},
+    "input_variables":["a", "b", "c"],
+    "return": "r",
+	"paths" : [{"constrain":"(-1<a*c)&&(a*c<1)&&(1e50<b)&&(1<c)", "path":[{"type": "procedure", "content": [["r", "(sqrt(b*b-4*a*c)-b)/(2*a)"]]}]}]
+}
